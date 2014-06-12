@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tbond.eatking"
+    android:versionCode="1"
+    android:versionName="1.0" >
+	
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="14" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_gdcatalog"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.GDCatalog" 
+        android:name="greendroid.app.GDApplication">
+         <meta-data
+          android:name="TencentMapSDK"
+          android:value="TWXBZ-2WAHW-YEFRP-RYNCQ-V4KWH-5TBYV"/>
+        <activity
+            android:name="com.tbond.eatking.view.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tbond.eatking.view.SearchActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.tbond.eatking.view.CreateShopActivity"
+            android:label="@string/app_name" >
+        </activity>
+        
+    </application>
+</manifest>
