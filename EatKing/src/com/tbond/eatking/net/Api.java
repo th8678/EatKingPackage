@@ -32,6 +32,15 @@ public class Api {
 		RequestParams params = new RequestParams();
 		params.put("userName", userName);
 		params.put("userPwd", userPwd);
+		String pathString = Environment.getExternalStorageDirectory().getAbsolutePath() + "/infosearch_share.jpg";
+		File im = new File(pathString);
+		Log.i("image",String.valueOf(im.length()));
+		try {
+			params.put("image", im);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		WebRestClient.post(API_LOGIN, params, reponseHandler);
 	}
 	

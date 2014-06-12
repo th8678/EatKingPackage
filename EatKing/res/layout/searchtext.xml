@@ -13,8 +13,7 @@
 	    android:id="@+id/et_searchtext_search"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_marginRight="@dimen/padding_size"
-	    android:layout_marginTop="@dimen/thumbnail_radius"
+	    android:drawableLeft="@drawable/gd_action_bar_search"
 	    android:singleLine="true" />
 	    <!--android:background="@drawable/ic_preference_single_normal"-->
 	    
@@ -31,7 +30,7 @@
 	    android:layout_height="wrap_content"
 	    android:src="@drawable/searchtext_selector"
 	    android:layout_alignRight="@id/et_searchtext_search"
-	    android:layout_marginRight="10dp"
-	    android:layout_marginTop="18dp"
+	    android:layout_marginRight="40dp"
+	    android:layout_marginTop="14dp"
 	    android:visibility="gone"/>
 </RelativeLayout>

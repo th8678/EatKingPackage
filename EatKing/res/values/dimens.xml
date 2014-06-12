@@ -20,7 +20,6 @@
 <resources>
 
     <dimen name="thumbnail_size">50dp</dimen>
-    <dimen name="thumbnail_padding">50dp</dimen>
     <dimen name="thumbnail_radius">5dp</dimen>
-    <dimen name="padding_size">90dp</dimen>
+    
 </resources>

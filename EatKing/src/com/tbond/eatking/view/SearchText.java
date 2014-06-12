@@ -22,36 +22,26 @@ public class SearchText extends LinearLayout {
 	//两个按钮
 	private ImageView ib_searchtext_delete;
 	private EditText et_searchtext_search;
-	
-	public SearchText(Context context){
-		super(context);
-		doMakeSearch(context);
-	}
-	
 	public SearchText(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		doMakeSearch(context);
-	}
-	
-	private void doMakeSearch(Context context){
 		// TODO Auto-generated constructor stub
-			//从一个打气筒获得一个view
-			View view = LayoutInflater.from(context).inflate(R.layout.searchtext, null);
-			//把获得的view加载到这个控件中
-			addView(view);
-			//把两个按钮从布局文件中找到
-			ib_searchtext_delete = (ImageView) view.findViewById(R.id.ib_searchtext_delete);
-			et_searchtext_search = (EditText) view.findViewById(R.id.et_searchtext_search);
-			//给删除按钮添加点击事件
-			ib_searchtext_delete.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					et_searchtext_search.setText("");
-				}
-			});
-			//给编辑框添加文本改变事件
-			et_searchtext_search.addTextChangedListener(new MyTextWatcher());
+		//从一个打气筒获得一个view
+		View view = LayoutInflater.from(context).inflate(R.layout.searchtext, null);
+		//把获得的view加载到这个控件中
+		addView(view);
+		//把两个按钮从布局文件中找到
+		ib_searchtext_delete = (ImageView) view.findViewById(R.id.ib_searchtext_delete);
+		et_searchtext_search = (EditText) view.findViewById(R.id.et_searchtext_search);
+		//给删除按钮添加点击事件
+		ib_searchtext_delete.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				et_searchtext_search.setText("");
+			}
+		});
+		//给编辑框添加文本改变事件
+		et_searchtext_search.addTextChangedListener(new MyTextWatcher());
 	}
 	
 	//文本观察者
