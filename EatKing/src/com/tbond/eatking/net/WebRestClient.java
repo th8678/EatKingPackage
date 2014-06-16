@@ -16,7 +16,7 @@ import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 
 public class WebRestClient {
-    private static final String BASE_URL = "http://10.2.64.8/Foodie/?m=Dao&a=";
+    private static final String BASE_URL = "http://10.2.64.13/Foodie/?m=Dao&a=";
 //	private static final String BASE_URL = "http://jxgzl.sinaapp.com/index.php/Admin/API/";
     
     private static AsyncHttpClient client = new AsyncHttpClient();
@@ -54,7 +54,7 @@ public class WebRestClient {
     }
 
     public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler){
-    	Log.i("post params:", getAbsoluteUrl(url) + params.toString());
+    	Log.i("post params:", getAbsoluteUrl(url));
     	client.post(getAbsoluteUrl(url), params, responseHandler);
     }
 

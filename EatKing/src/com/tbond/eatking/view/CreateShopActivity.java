@@ -28,13 +28,13 @@ public class CreateShopActivity extends GDActivity {
         
         setActionBarContentView(R.layout.activity_main);
         
-        getActionBar().setFirstDrawable(this, R.drawable.gd_action_bar_back);
-        getActionBar().getFirstButton().setOnClickListener(new BackBarListener());
+        getGDActionBar().setFirstDrawable(this, R.drawable.gd_action_bar_back);
+        getGDActionBar().getFirstButton().setOnClickListener(new BackBarListener());
         
         nextButton = new ImageButton(this);
         nextButton.setImageDrawable(getResources().getDrawable(R.drawable.gd_action_bar_add));
         nextButton.setLeft(10);
-        getActionBar().addView(nextButton);
+        getGDActionBar().addView(nextButton);
     }
 
     /**

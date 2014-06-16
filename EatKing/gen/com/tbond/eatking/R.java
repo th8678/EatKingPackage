@@ -622,6 +622,12 @@ containing a value of this type.
         public static final int user_purple=0x7f06000b;
         public static final int user_purple_dark=0x7f06000c;
         public static final int white=0x7f060002;
+        public static final int color1=0x7f060003;
+        public static final int color2=0x7f060004;
+        public static final int gd_action_bar_divider_tint=0x7f060001;
+        public static final int gd_action_bar_tint=0x7f060000;
+        public static final int link=0x7f060005;
+        public static final int test1=0x7f060002;
     }
     public static final class dimen {
         /** 
@@ -836,6 +842,14 @@ containing a value of this type.
         public static final int markEnvironment=0x7f050050;
         public static final int markService=0x7f050051;
         public static final int markTaste=0x7f05004f;
+        public static final int ib_searchtext_delete=0x7f05003e;
+        public static final int imageView1=0x7f050041;
+        public static final int image_view=0x7f050035;
+        public static final int ldpi=0x7f050004;
+        public static final int left=0x7f05000a;
+        public static final int location=0x7f050040;
+        public static final int map_view=0x7f050038;
+        public static final int mapviewtraffic=0x7f05001f;
         public static final int mdpi=0x7f050005;
         public static final int multiple=0x7f050010;
         public static final int newShopAddress=0x7f05003f;
@@ -851,13 +865,20 @@ containing a value of this type.
         public static final int right=0x7f05000b;
         public static final int segmented_host=0x7f05001d;
         public static final int shopName=0x7f050038;
+        public static final int page_indicator_next=0x7f05003b;
+        public static final int page_indicator_other=0x7f05003c;
+        public static final int page_indicator_prev=0x7f05003a;
+        public static final int paged_view=0x7f050039;
+        public static final int phone_num=0x7f050042;
+        public static final int right=0x7f05000b;
+        public static final int segmented_host=0x7f05001e;
+        public static final int shop_name=0x7f05003f;
         public static final int single=0x7f05000f;
         public static final int text=0x7f050036;
         public static final int time=0x7f050053;
         public static final int top=0x7f050008;
         public static final int userName=0x7f05004e;
         public static final int web_view=0x7f05005c;
-        public static final int xhdpi=0x7f050007;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -913,6 +934,53 @@ containing a value of this type.
         public static final int show_review=0x7f030032;
         public static final int text=0x7f030033;
         public static final int web_view=0x7f030034;
+        public static final int gd_action_bar_dashboard=0x7f030002;
+        public static final int gd_action_bar_empty=0x7f030003;
+        public static final int gd_action_bar_item_base=0x7f030004;
+        public static final int gd_action_bar_item_loader=0x7f030005;
+        public static final int gd_action_bar_item_title=0x7f030006;
+        public static final int gd_action_bar_normal=0x7f030007;
+        public static final int gd_content_dashboard=0x7f030008;
+        public static final int gd_content_empty=0x7f030009;
+        public static final int gd_content_normal=0x7f03000a;
+        public static final int gd_description_item_view=0x7f03000b;
+        public static final int gd_drawable_item_view=0x7f03000c;
+        public static final int gd_expandable_list_content_dashboard=0x7f03000d;
+        public static final int gd_expandable_list_content_empty=0x7f03000e;
+        public static final int gd_expandable_list_content_normal=0x7f03000f;
+        public static final int gd_list_content_dashboard=0x7f030010;
+        public static final int gd_list_content_empty=0x7f030011;
+        public static final int gd_list_content_normal=0x7f030012;
+        public static final int gd_long_text_item_view=0x7f030013;
+        public static final int gd_progress_item_view=0x7f030014;
+        public static final int gd_quick_action_bar=0x7f030015;
+        public static final int gd_quick_action_bar_item=0x7f030016;
+        public static final int gd_quick_action_grid=0x7f030017;
+        public static final int gd_quick_action_grid_item=0x7f030018;
+        public static final int gd_segment=0x7f030019;
+        public static final int gd_separator_item_view=0x7f03001a;
+        public static final int gd_subtext_item_view=0x7f03001b;
+        public static final int gd_subtitle_item_view=0x7f03001c;
+        public static final int gd_tab_content=0x7f03001d;
+        public static final int gd_tab_indicator=0x7f03001e;
+        public static final int gd_text_item_view=0x7f03001f;
+        public static final int gd_thumbnail_item_view=0x7f030020;
+        public static final int headed_text_item_view=0x7f030021;
+        public static final int image=0x7f030022;
+        public static final int image_item_view=0x7f030023;
+        public static final int info=0x7f030024;
+        public static final int map_pin=0x7f030025;
+        public static final int paged_view=0x7f030026;
+        public static final int paged_view_item=0x7f030027;
+        public static final int quick_action=0x7f030028;
+        public static final int search_activity=0x7f030029;
+        public static final int search_list_item=0x7f03002a;
+        public static final int searchtext=0x7f03002b;
+        public static final int segmented_host=0x7f03002c;
+        public static final int shop_info_changed=0x7f03002d;
+        public static final int tab_indicator_mystyles=0x7f03002e;
+        public static final int text=0x7f03002f;
+        public static final int web_view=0x7f030030;
     }
     public static final class string {
         public static final int about=0x7f08002b;
@@ -961,6 +1029,7 @@ containing a value of this type.
         public static final int image_for_position=0x7f080037;
         public static final int license=0x7f08002c;
         public static final int list=0x7f08003b;
+        public static final int location=0x7f080044;
         public static final int map_pin_drawable_label=0x7f080029;
         public static final int mark=0x7f08003e;
         public static final int more=0x7f08003c;
@@ -968,6 +1037,7 @@ containing a value of this type.
         public static final int newOne=0x7f080039;
         public static final int paged_view_label=0x7f08002a;
         public static final int personalInfo=0x7f08003d;
+        public static final int phone=0x7f080045;
         public static final int quick_action_label=0x7f080026;
         public static final int recommand=0x7f08003a;
         public static final int refresh_pressed=0x7f080035;
@@ -979,6 +1049,10 @@ containing a value of this type.
         public static final int segment_4=0x7f080030;
         public static final int segmented_label=0x7f080024;
         public static final int setting=0x7f08003f;
+        public static final int shop_duplicate=0x7f080042;
+        public static final int shop_info_edit=0x7f080040;
+        public static final int shop_name=0x7f080043;
+        public static final int shop_status_edit=0x7f080041;
         public static final int show_image_1=0x7f080031;
         public static final int show_image_2=0x7f080032;
         public static final int show_image_3=0x7f080033;

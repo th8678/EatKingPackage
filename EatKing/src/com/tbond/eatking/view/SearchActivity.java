@@ -29,11 +29,14 @@ public class SearchActivity extends GDActivity {
         super.onCreate(savedInstanceState);
         
         setActionBarContentView(R.layout.activity_main);
-        
-        getActionBar().setFirstDrawable(this, R.drawable.gd_action_bar_back);
-        getActionBar().getFirstButton().setOnClickListener(new BackBarListener());;
+
         searchText = new SearchText(this, null);
-        getActionBar().addView(searchText);
+        addActionBarItem(getGDActionBar().
+        		newActionBarItem(NormalActionBarItem.class)
+                .setDrawable(R.drawable.gd_action_bar_back)
+                .setContentDescription(R.string.gd_back), R.id.action_bar_back);
+        getGDActionBar().addView(searchText);
+
         addActionBarItem(Type.Search, R.id.action_bar_search);
         
     }

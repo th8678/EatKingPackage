@@ -28,6 +28,7 @@ import com.tencent.tencentmap.mapsdk.map.Overlay;
 import com.tencent.tencentmap.mapsdk.map.OverlayItem;
 import com.tencent.tencentmap.mapsdk.map.PoiOverlay;
 import com.tencent.tencentmap.mapsdk.map.PoiOverlay.CustomInfoWindowAdapter;
+import com.tbond.eatking.net.JsonAnalysis;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -97,11 +98,12 @@ public class MainActivity extends GDActivity {
 //                mAdapter.notifyDataSetChanged();
 //            }
 //        }, 4000);
-        getActionBar().setFirstDrawable(this, R.drawable.gd_action_bar_list);
-        getActionBar().getFirstButton().setOnClickListener(new ListBarListener());;
+        getGDActionBar().setFirstDrawable(this, R.drawable.gd_action_bar_list);
+        getGDActionBar().getFirstButton().setOnClickListener(new ListBarListener());;
         addActionBarItem(Type.Search, R.id.action_bar_search);
-        
         segmentedHost.setAdapter(mAdapter);
+        getGDActionBar().setBackgroundColor(getResources().getColor(R.color.color1));
+        
         prepareQuickActionBar();
         prepareMapView();
     }
@@ -195,6 +197,41 @@ public class MainActivity extends GDActivity {
             Toast.makeText(MainActivity.this, "Item " + position + " clicked", Toast.LENGTH_SHORT).show();
         }
     };
+    
+    private class SegmentSwitcher implements OnSegmentChangeListener {
+        public void onSegmentChange(int index, boolean clicked) {
+            changeActivity(index);
+        }
+    }
+    
+    public void changeActivity(int index){
+    	Log.i("index", "点了点了" + index);
+    	segmentedHost.getSegmentedBar().setEnabled(false);
+    	switch (index) {
+		case 0:
+			intent = new Intent();
+            intent.setClass(MainActivity.this, CreateShopActivity.class);
+            startActivity(intent);
+            break;
+		case 1:
+			JsonAnalysis.getInstance().login(MainActivity.this, "tbond", "tbond");
+		
+			break;
+		case 2:
+			/**
+	         * 跳转纠错页
+	         */
+	        Intent intent = new Intent();
+	        intent.setClass(MainActivity.this, CorrectActivity.class);
+	        startActivity(intent);
+			break;
+		case 3:
+			break;
+
+		default:
+			break;
+		}
+    }
     
     /**
      * segmentbar四个小项的事件处理以及名称

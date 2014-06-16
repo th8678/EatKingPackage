@@ -69,6 +69,7 @@
     <string name="personalInfo">个人资料</string>
     <string name="mark">收藏</string>
     <string name="setting">设置</string>
+<<<<<<< HEAD
     <color name="white">#eeeeee</color>
     <color name="shop_orange">#f77d34</color>
     <color name="shop_orange_light">#f8a061</color>
@@ -87,4 +88,14 @@
     <color name="other_yellow_dark">#e2b02b</color>
     <color name="gray">#828282</color>
     <color name="black">#242424</color>
+=======
+    
+    <string name="shop_info_edit">商户信息</string>
+    <string name="shop_status_edit">营业状态</string>
+    <string name="shop_duplicate">举报重复</string>
+    
+    <string name="shop_name">店名</string>
+    <string name="location">位置</string>
+    <string name="phone">电话</string>
+>>>>>>> be49ce460bd2b501dcf8b253768839c7fb216757
 </resources>
