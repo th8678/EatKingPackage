@@ -600,6 +600,7 @@ containing a value of this type.
     public static final class color {
         public static int gd_action_bar_divider_tint=0x7f060001;
         public static int gd_action_bar_tint=0x7f060000;
+        public static int test1=0x7f060002;
     }
     public static final class dimen {
         public static int gd_action_bar_height=0x7f07000b;

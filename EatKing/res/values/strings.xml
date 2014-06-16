@@ -69,4 +69,12 @@
     <string name="personalInfo">个人资料</string>
     <string name="mark">收藏</string>
     <string name="setting">设置</string>
+    
+    <string name="shop_info_edit">商户信息</string>
+    <string name="shop_status_edit">营业状态</string>
+    <string name="shop_duplicate">举报重复</string>
+    
+    <string name="shop_name">店名</string>
+    <string name="location">位置</string>
+    <string name="phone">电话</string>
 </resources>

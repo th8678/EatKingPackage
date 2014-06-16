@@ -1,6 +1,5 @@
 package com.tbond.eatking.view;
 
-import org.json.JSONObject;
 
 import greendroid.app.GDActivity;
 import greendroid.widget.ActionBar;
@@ -14,10 +13,8 @@ import greendroid.widget.ActionBarItem.Type;
 import greendroid.widget.QuickActionWidget.OnQuickActionClickListener;
 import greendroid.widget.SegmentedBar.OnSegmentChangeListener;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.tbond.eatking.R;
-import com.tbond.eatking.net.Api;
-import com.tencent.tencentmap.mapsdk.map.MapView;
+import com.tbond.eatking.net.JsonAnalysis;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -63,17 +60,19 @@ public class MainActivity extends GDActivity {
 //                mAdapter.notifyDataSetChanged();
 //            }
 //        }, 4000);
-        getActionBar().setFirstDrawable(this, R.drawable.gd_action_bar_list);
-        getActionBar().getFirstButton().setOnClickListener(new ListBarListener());;
+        getGDActionBar().setFirstDrawable(this, R.drawable.gd_action_bar_list);
+        getGDActionBar().getFirstButton().setOnClickListener(new ListBarListener());;
         addActionBarItem(Type.Search, R.id.action_bar_search);
 //        TitleActionBarItem titleActionBarItem = new TitleActionBarItem(getString(R.string.gd_mail));
 //        addActionBarItem(titleActionBarItem, R.id.action_bar_title);
-//        addActionBarItem(getActionBar()
+//        addActionBarItem(getGDActionBar()
 //                .newActionBarItem(NormalActionBarItem.class)
 //                .setDrawable(R.drawable.ic_title_export)
 //                .setContentDescription(R.string.gd_export), R.id.action_bar_export);
 //        addActionBarItem(Type.Locate, R.id.action_bar_locate);
         segmentedHost.setAdapter(mAdapter);
+        getGDActionBar().setBackgroundColor(getResources().getColor(R.color.color1));
+        
         prepareQuickActionBar();
     }
     
@@ -114,31 +113,18 @@ public class MainActivity extends GDActivity {
             startActivity(intent);
             break;
 		case 1:
-			Api.getInstance().login("tbond", "tbond", new JsonHttpResponseHandler(){
-				@Override
-				public void onFailure(Throwable e, JSONObject errorResponse) {
-//					dialog.dismiss();
-//					LogUtil.i(TAG, "login request onFailure:" + errorResponse.toString());
-//					super.onFailure(e, errorResponse);
-					Log.i("eatking", "onFailure");
-					Log.i("response", e.toString());
-				}
-
-				@Override
-				public void onSuccess(JSONObject response) {
-					Log.i("eatking", "onSuccess");
-					//LogUtil.i(TAG, "login request onSuccess:" + response.toString());
-					//dialog.dismiss();
-					Log.i("response", response.toString());
-				}
-			});
+			JsonAnalysis.getInstance().login(MainActivity.this, "tbond", "tbond");
 		
 			break;
 		case 2:
-			
+			/**
+	         * Ìø×ª¾À´íÒ³
+	         */
+	        Intent intent = new Intent();
+	        intent.setClass(MainActivity.this, CorrectActivity.class);
+	        startActivity(intent);
 			break;
 		case 3:
-			
 			break;
 
 		default:

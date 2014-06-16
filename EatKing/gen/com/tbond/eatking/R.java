@@ -598,9 +598,12 @@ containing a value of this type.
         public static final int url=0x7f010052;
     }
     public static final class color {
+        public static final int color1=0x7f060003;
+        public static final int color2=0x7f060004;
         public static final int gd_action_bar_divider_tint=0x7f060001;
         public static final int gd_action_bar_tint=0x7f060000;
-        public static final int link=0x7f060002;
+        public static final int link=0x7f060005;
+        public static final int test1=0x7f060002;
     }
     public static final class dimen {
         /** 
@@ -774,9 +777,11 @@ containing a value of this type.
         public static final int gdi_scroll=0x7f05002b;
         public static final int hdpi=0x7f050006;
         public static final int ib_searchtext_delete=0x7f05003e;
+        public static final int imageView1=0x7f050041;
         public static final int image_view=0x7f050035;
         public static final int ldpi=0x7f050004;
         public static final int left=0x7f05000a;
+        public static final int location=0x7f050040;
         public static final int map_view=0x7f050038;
         public static final int mapviewtraffic=0x7f05001f;
         public static final int mdpi=0x7f050005;
@@ -786,12 +791,14 @@ containing a value of this type.
         public static final int page_indicator_other=0x7f05003c;
         public static final int page_indicator_prev=0x7f05003a;
         public static final int paged_view=0x7f050039;
+        public static final int phone_num=0x7f050042;
         public static final int right=0x7f05000b;
         public static final int segmented_host=0x7f05001e;
+        public static final int shop_name=0x7f05003f;
         public static final int single=0x7f05000f;
         public static final int text=0x7f050037;
         public static final int top=0x7f050008;
-        public static final int web_view=0x7f05003f;
+        public static final int web_view=0x7f050043;
         public static final int xhdpi=0x7f050007;
     }
     public static final class layout {
@@ -840,8 +847,10 @@ containing a value of this type.
         public static final int search_list_item=0x7f03002a;
         public static final int searchtext=0x7f03002b;
         public static final int segmented_host=0x7f03002c;
-        public static final int text=0x7f03002d;
-        public static final int web_view=0x7f03002e;
+        public static final int shop_info_changed=0x7f03002d;
+        public static final int tab_indicator_mystyles=0x7f03002e;
+        public static final int text=0x7f03002f;
+        public static final int web_view=0x7f030030;
     }
     public static final class string {
         public static final int about=0x7f08002b;
@@ -890,6 +899,7 @@ containing a value of this type.
         public static final int image_for_position=0x7f080037;
         public static final int license=0x7f08002c;
         public static final int list=0x7f08003b;
+        public static final int location=0x7f080044;
         public static final int map_pin_drawable_label=0x7f080029;
         public static final int mark=0x7f08003e;
         public static final int more=0x7f08003c;
@@ -897,6 +907,7 @@ containing a value of this type.
         public static final int newOne=0x7f080039;
         public static final int paged_view_label=0x7f08002a;
         public static final int personalInfo=0x7f08003d;
+        public static final int phone=0x7f080045;
         public static final int quick_action_label=0x7f080026;
         public static final int recommand=0x7f08003a;
         public static final int refresh_pressed=0x7f080035;
@@ -908,6 +919,10 @@ containing a value of this type.
         public static final int segment_4=0x7f080030;
         public static final int segmented_label=0x7f080024;
         public static final int setting=0x7f08003f;
+        public static final int shop_duplicate=0x7f080042;
+        public static final int shop_info_edit=0x7f080040;
+        public static final int shop_name=0x7f080043;
+        public static final int shop_status_edit=0x7f080041;
         public static final int show_image_1=0x7f080031;
         public static final int show_image_2=0x7f080032;
         public static final int show_image_3=0x7f080033;

@@ -50,11 +50,11 @@ public class SearchActivity extends GDListActivity {
         setActionBarContentView(R.layout.search_activity);
         setListView((ListView)findViewById(android.R.id.list));
         searchText = new SearchText(this, null);
-        addActionBarItem(getActionBar().
+        addActionBarItem(getGDActionBar().
         		newActionBarItem(NormalActionBarItem.class)
                 .setDrawable(R.drawable.gd_action_bar_back)
                 .setContentDescription(R.string.gd_back), R.id.action_bar_back);
-        getActionBar().addView(searchText);
+        getGDActionBar().addView(searchText);
         addActionBarItem(Type.Search, R.id.action_bar_search);
         addShop();
     }

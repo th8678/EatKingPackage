@@ -88,7 +88,7 @@ public abstract class GDMapActivity extends MapActivity implements ActionBarActi
         ensureLayout();
     }
 
-    public ActionBar.Type getActionBarType() {
+    public ActionBar.Type getGDActionBarType() {
         return mActionBarType;
     }
 
@@ -130,7 +130,7 @@ public abstract class GDMapActivity extends MapActivity implements ActionBarActi
             throw new RuntimeException(
                     "Your content must have an ActionBarHost whose id attribute is R.id.gd_action_bar_host");
         }
-        mActionBarHost.getActionBar().setOnActionBarListener(mActionBarListener);
+        mActionBarHost.getGDActionBar().setOnActionBarListener(mActionBarListener);
     }
 
     public void onPostContentChanged() {
@@ -160,12 +160,12 @@ public abstract class GDMapActivity extends MapActivity implements ActionBarActi
         }
         
         final int visibility = intent.getIntExtra(ActionBarActivity.GD_ACTION_BAR_VISIBILITY, View.VISIBLE);
-        getActionBar().setVisibility(visibility);
+        getGDActionBar().setVisibility(visibility);
     }
 
 	@Override
     public void setTitle(CharSequence title) {
-        getActionBar().setTitle(title);
+        getGDActionBar().setTitle(title);
     }
 
     @Override
@@ -174,21 +174,21 @@ public abstract class GDMapActivity extends MapActivity implements ActionBarActi
     }
 
     @SuppressLint("Override")
-	public ActionBar getActionBar() {
+	public ActionBar getGDActionBar() {
         ensureLayout();
-        return mActionBarHost.getActionBar();
+        return mActionBarHost.getGDActionBar();
     }
 
     public ActionBarItem addActionBarItem(ActionBarItem item, int itemId) {
-        return getActionBar().addItem(item, itemId);
+        return getGDActionBar().addItem(item, itemId);
     }
 
     public ActionBarItem addActionBarItem(ActionBarItem.Type actionBarItemType) {
-        return getActionBar().addItem(actionBarItemType);
+        return getGDActionBar().addItem(actionBarItemType);
     }
 
     public ActionBarItem addActionBarItem(ActionBarItem.Type actionBarItemType, int itemId) {
-        return getActionBar().addItem(actionBarItemType, itemId);
+        return getGDActionBar().addItem(actionBarItemType, itemId);
     }
 
     public FrameLayout getContentView() {
@@ -242,7 +242,7 @@ public abstract class GDMapActivity extends MapActivity implements ActionBarActi
                 }
 
             } else {
-                if (!onHandleActionBarItemClick(getActionBar().getItem(position), position)) {
+                if (!onHandleActionBarItemClick(getGDActionBar().getItem(position), position)) {
                     if (Config.GD_WARNING_LOGS_ENABLED) {
                         Log.w(LOG_TAG, "Click on item at position " + position + " dropped down to the floor");
                     }

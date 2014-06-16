@@ -117,6 +117,7 @@ public final class R {
 	public static final class color {
 		public static final int gd_action_bar_divider_tint = 0x7f070001;
 		public static final int gd_action_bar_tint = 0x7f070000;
+		public static final int test1 = 0x7f070002;
 	}
 	public static final class dimen {
 		public static final int gd_action_bar_height = 0x7f08000b;

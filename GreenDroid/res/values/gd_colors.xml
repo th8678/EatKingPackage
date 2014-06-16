@@ -21,5 +21,5 @@
 
 	<color name="gd_action_bar_tint">#a8c24e</color>
 	<color name="gd_action_bar_divider_tint">#7fff</color>
-    
+    <color name="test1">#ff00ff</color>
 </resources>
