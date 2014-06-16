@@ -69,4 +69,22 @@
     <string name="personalInfo">个人资料</string>
     <string name="mark">收藏</string>
     <string name="setting">设置</string>
+    <color name="white">#eeeeee</color>
+    <color name="shop_orange">#f77d34</color>
+    <color name="shop_orange_light">#f8a061</color>
+    <color name="shop_green_light">#7ba541</color>
+    <color name="shop_green">#25350e</color>
+    <color name="shop_green_dark">#132b13</color>
+    <color name="user_pink_dark">#9e0d1e</color>
+    <color name="user_pink">#e8343f</color>
+    <color name="user_pink_light">#ff7564</color>
+    <color name="user_purple">#2f253d</color>
+    <color name="user_purple_dark">#1c101e</color>
+    <color name="other_brown_dark">#bc9b4a</color>
+    <color name="other_brown">#d3bf9e</color>
+    <color name="other_brown_light">#d9cebc</color>
+    <color name="other_yellow_light">#e9c04e</color>
+    <color name="other_yellow_dark">#e2b02b</color>
+    <color name="gray">#828282</color>
+    <color name="black">#242424</color>
 </resources>

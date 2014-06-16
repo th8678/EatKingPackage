@@ -4,25 +4,43 @@
     android:versionCode="1"
     android:versionName="1.0" >
 	
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" /> 
+    <uses-sdk
+        android:minSdkVersion="9" />
+
+    <!-- 通过GPS得到精确位置 --> 
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />  
+<!-- 通过网络得到粗略位置 --> 
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />  
+<!-- 访问网络. 某些位置信息需要从网络服务器获取 -->  
+<uses-permission android:name="android.permission.INTERNET" />  
+<!-- 访问额外的位置相关命令 --> 
+<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />  
+<!-- 访问WiFi状态. 需要WiFi信息用于网络定位 --> 
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />  
+<!-- 修改WiFi状态. 需要WiFi信息用于网络定位 --> 
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />  
+<!-- 访问网络状态. 需要网络运营商相关信息用于网络定位 --> 
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />  
+<!-- 获取手机当前状态 --> 
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
     
-    <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="14" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_gdcatalog"
         android:label="@string/app_name"
         android:theme="@style/Theme.GDCatalog" 
         android:name="greendroid.app.GDApplication">
-         <meta-data
+          <meta-data
           android:name="TencentMapSDK"
-          android:value="TWXBZ-2WAHW-YEFRP-RYNCQ-V4KWH-5TBYV"/>
+          android:value="PU4BZ-TOK2R-WIYWE-W6BMA-KAKO2-IJFYW"/>
         <activity
             android:name="com.tbond.eatking.view.MainActivity"
             android:label="@string/app_name" >
@@ -37,9 +55,16 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.tbond.eatking.view.CreateShopActivity"
+            android:name="com.tbond.eatking.view.NewShopStartActivity"
             android:label="@string/app_name" >
         </activity>
-        
+        <activity
+            android:name="com.tbond.eatking.view.ShowReviewActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.tbond.eatking.view.NewShopEnsureLocationActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 </manifest>

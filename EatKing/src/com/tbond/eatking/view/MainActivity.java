@@ -15,6 +15,7 @@ import greendroid.widget.ActionBarItem.Type;
 import greendroid.widget.QuickActionWidget.OnQuickActionClickListener;
 
 import com.tbond.eatking.R;
+import com.tbond.eatking.view.MapOverlay.OnTapListener;
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApi;
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApiListener;
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApiResult;
@@ -422,6 +423,12 @@ public class MainActivity extends GDActivity {
 			// TODO Auto-generated method stub
 			LayoutParams layoutParams = new MapView.LayoutParams(markerWidth*10,markerHeight*10,geoPoint,LayoutParams.CENTER);
 			return layoutParams;
-		}}
+		}
+	}
+    
+	public void setOnTapListener(OnTapListener listnerTap)
+	{
+		tapListener=listnerTap;
+	}
     
 }

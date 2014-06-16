@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_weight="2.5"
+        android:layout_height="134dp" >
+
+        <ImageView
+            android:id="@+id/headerBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/header_new_shop_brown" />
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@style/AppTheme"
+            android:src="@drawable/back_button_white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/headerTitle"
+                android:layout_width="match_parent"
+                android:layout_height="96px"
+                android:gravity="center"
+                android:text="新店铺"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <EditText
+                android:id="@+id/newShopName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="14dp"
+                android:ems="10"
+                android:hint="请输入店铺名称"
+                android:singleLine="true" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <ListView
+        android:id="@+id/listShop"
+        android:layout_width="match_parent"
+        android:layout_height="312dp"
+        android:layout_weight="6.5" >
+    </ListView>
+
+    <ImageButton
+        android:id="@+id/ensureBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@style/AppTheme"
+        android:src="@drawable/new_shop_ensure_name_button" />
+
+</LinearLayout>
