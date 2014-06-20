@@ -13,6 +13,11 @@ public class Shop {
 	private String state = null;
 	private String time = null;
 	private String isCollected = null;
+	private String environmentGrade = null;
+	private String tastGrade = null;
+	private String serviceGrade = null;
+	private String pricePerPerson = null;
+	
 	public Shop() {
 
 	}
@@ -132,6 +137,39 @@ public class Shop {
 	public String print() {
 		return shopId + shopName + userId + locationX + locationY + address
 				+ phoneNumber + businessTime + tips + state;
+	}
+	public void setServiceGrade(String serviceGrade) {
+		this.serviceGrade = serviceGrade;
+
+	}
+	public void setEnvironmentGrade(String environmentGrade) {
+		this.environmentGrade = environmentGrade;
+
+	}
+	public void setPricePerPerson(String pricePerPerson) {
+		this.pricePerPerson = pricePerPerson;
+
+	}
+public void setTastGrade(String tastGrade) {
+		this.tastGrade = tastGrade;
+
+	}
+public String GetEnvironmentGrade() {
+		return this.environmentGrade;
+
+	}
+	
+	public String GetServiceGrade() {
+		return this.serviceGrade;
+
+	}
+	public String GetPricePerPerson() {
+		return this.pricePerPerson;
+
+	}
+	public String GetTastGrade() {
+		return this.tastGrade;
+
 	}
 
 }

@@ -20,7 +20,7 @@
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@style/AppTheme"
+            android:background="#00ffffff"
             android:src="@drawable/back_button_white" />
 
         <LinearLayout
@@ -31,8 +31,9 @@
             <TextView
                 android:id="@+id/headerTitle"
                 android:layout_width="match_parent"
-                android:layout_height="96px"
+                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_margin="15dp"
                 android:text="新店铺"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -53,6 +54,7 @@
         android:id="@+id/listShop"
         android:layout_width="match_parent"
         android:layout_height="312dp"
+        android:divider="@color/other_yellow_dark"
         android:layout_weight="6.5" >
     </ListView>
 
@@ -61,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@style/AppTheme"
+        android:background="#00ffffff"
         android:src="@drawable/new_shop_ensure_name_button" />
 
 </LinearLayout>

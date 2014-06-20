@@ -23,7 +23,11 @@ import android.widget.ArrayAdapter;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.tbond.eatking.model.*;
+import com.tbond.eatking.view.CollectionActivity;
 import com.tbond.eatking.view.MainActivity;
+import com.tbond.eatking.view.NewShopEnsureLocationActivity;
+import com.tbond.eatking.view.SearchActivity;
+import com.tbond.eatking.view.ShowReviewActivity;
 
 public class JsonAnalysis {
 	private static JsonAnalysis instance = new JsonAnalysis();
@@ -307,7 +311,7 @@ public class JsonAnalysis {
 						ErrorMessage errorMess = new ErrorMessage();
 						errorMess.setError("1");
 						errorMess.setResult("服务器繁忙");
-						//((MainActivity) object).setMessage(errorMess);
+						((CollectionActivity) object).setMessage(errorMess);
 
 					}
 
@@ -325,7 +329,7 @@ public class JsonAnalysis {
 								String result = arg1.getString("result");
 								errorMess.setError(error);
 								errorMess.setResult(result);
-								//((MainActivity) object).setMessage(errorMess);
+								((CollectionActivity) object).setMessage("successed");
 							}
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
@@ -375,7 +379,7 @@ public class JsonAnalysis {
 				ErrorMessage errorMess = new ErrorMessage();
 				errorMess.setError("1");
 				errorMess.setResult("服务器繁忙");
-				//((MainActivity) object).setMessage(errorMess);
+				((NewShopEnsureLocationActivity) object).setMessage(errorMess);
 
 			}
 
@@ -387,15 +391,15 @@ public class JsonAnalysis {
 				try {
 					String error = arg1.getString("error");
 					if (Integer.valueOf(error) == 1) {
-						if (object instanceof MainActivity) {
+						if (object instanceof NewShopEnsureLocationActivity) {
 							ErrorMessage errorMess = new ErrorMessage();
 							String result = arg1.getString("result");
 							errorMess.setError(error);
 							errorMess.setResult(result);
-							//((MainActivity) object).setMessage(errorMess);
+							((NewShopEnsureLocationActivity) object).setMessage(errorMess);
 						}
 					} else {
-						if (object instanceof MainActivity) {
+						if (object instanceof NewShopEnsureLocationActivity) {
 							Shop shop = new Shop();
 							String address = arg1.getString("address");
 							String shopId = arg1.getString("shopId");
@@ -405,7 +409,7 @@ public class JsonAnalysis {
 							errorMess.setError(error);
 							errorMess.setResult("店铺添加成功");
 							//((MainActivity) object).setMessage(errorMess);
-							// //((MainActivity) object).setShop(shop);
+							((NewShopEnsureLocationActivity) object).setShop(shop);
 
 						}
 
@@ -746,7 +750,7 @@ public class JsonAnalysis {
 						ErrorMessage errorMess = new ErrorMessage();
 						errorMess.setError("1");
 						errorMess.setResult("服务器繁忙");
-						//((MainActivity) object).setMessage(errorMess);
+						((ShowReviewActivity) object).setMessage("successed");
 
 					}
 
@@ -755,16 +759,20 @@ public class JsonAnalysis {
 						// TODO Auto-generated method stub
 						// super.onSuccess(arg1);
 
-						Log.i("JsonAnalysis login", arg1.toString());
+						//Log.i("JsonAnalysis login", arg1.toString());
 						try {
 
-							if (object instanceof MainActivity) {
+							if (object instanceof ShowReviewActivity) {
 								ErrorMessage errorMess = new ErrorMessage();
-								String error = arg1.getString("error");// 获取pet对象的参数
-								String result = arg1.getString("result");
-								errorMess.setError(error);
-								errorMess.setResult(result);
-								//((MainActivity) object).setMessage(errorMess);
+								String error = arg1.getString("error");
+								if (Integer.valueOf(error) == 1) {
+									String result = arg1.getString("result");
+									errorMess.setError(error);
+									errorMess.setResult(result);
+									((ShowReviewActivity) object).setMessage(errorMess);
+								} else{
+								((ShowReviewActivity) object).setMessage("successed");
+								}
 							}
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
@@ -926,8 +934,8 @@ public class JsonAnalysis {
 	 */
 
 	public void searchShopByKey(Object object, String key) {
-		//params = new RequestParams();
-		//params.put("key", key);
+		params = new RequestParams();
+		params.put("key", key);
 
 		Api.getInstance().searchShopByKey(params,
 				new JsonHttpResponseHandler() {
@@ -939,73 +947,102 @@ public class JsonAnalysis {
 					}
 
 					@Override
-					public void onFailure(Throwable arg0, JSONObject arg1) {
+					public void onFailure(Throwable arg0, JSONObject arg) {
 						// TODO Auto-generated method stub
 						// super.onFailure(arg0, arg1);
 						ErrorMessage errorMess = new ErrorMessage();
 						errorMess.setError("1");
 						errorMess.setResult("服务器繁忙");
-						//((MainActivity) object).setMessage(errorMess);
+						((SearchActivity) object).setMessage(errorMess);
 
 					}
 
 					@Override
-					public void onSuccess(JSONObject arg1) {
+					public void onSuccess(JSONObject arg) {
 						// TODO Auto-generated method stub
 						// super.onSuccess(arg1);
+                        
+						Log.i("JsonAnalysis login", arg.toString());
+						try {
 
-						Log.i("JsonAnalysis login", arg1.toString());
-//						try {
-//
-//							if (object instanceof MainActivity) {
-//								ErrorMessage errorMess = new ErrorMessage();
-//								String error = arg1.getString("error");// 获取pet对象的参数
-//								if (Integer.valueOf(error) == 1) {
-//									String result = arg1.getString("result");
-//									errorMess.setError(error);
-//									errorMess.setResult(result);
-//									((MainActivity) object)
-//											.setMessage(errorMess);
-//								} else {
-//									String shopId = arg1.getString("shopId");
-//									String userId = arg1.getString("userId");
-//									String shopName = arg1
-//											.getString("shopName");
-//									String locationX = arg1
-//											.getString("locationX");
-//									String locationY = arg1
-//											.getString("locationY");
-//									String address = arg1.getString("address");
-//									String phoneNumber = arg1
-//											.getString("phoneNumber");
-//									String businessTime = arg1
-//											.getString("businessTime");
-//									String tips = arg1.getString("tips");
-//									String state = arg1.getString("state");
-//									Shop shop = new Shop();
-//									shop.setAddress(address);
-//									shop.setBusinessTime(businessTime);
-//									shop.setLocationX(locationX);
-//									shop.setLocationY(locationY);
-//									shop.setphoneNumber(phoneNumber);
-//									shop.setShopId(shopId);
-//									shop.setShopName(shopName);
-//									shop.setState(state);
-//									shop.setTips(tips);
-//									shop.setUserId(userId);
-//									//((MainActivity) object).setShop(shop);
-//								}
-//
-//							}
-//						} catch (JSONException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
+							if (object instanceof SearchActivity) {
+								String error = arg.getString("error");
+								if (Integer.valueOf(error) == 1) {
+									if (object instanceof MainActivity) {
+										ErrorMessage errorMess = new ErrorMessage();
+										String result = arg.getString("result");
+										errorMess.setError(error);
+										errorMess.setResult(result);
+										((SearchActivity) object).setMessage(errorMess);
+									}
+								} else {
+									JSONArray arg1 = arg.getJSONArray("result");
+								List<Shop> shops = new ArrayList();
+								for (int i = 0; i < arg1.length();i++) {
+									JSONObject temp = arg1.getJSONObject(i);
+									Shop  shop = new Shop();
+									String phoneNumber = temp
+											.getString("phoneNumber");
+									String shopName = temp
+											.getString("shopName");
+									String address = temp.getString("address");
+									
+										String shopId = temp.getString("shopId");
+										String userId = temp.getString("userId");
+										String state = temp.getString("state");
+										String businessTime = temp
+												.getString("businessTime");
+										
+										String locationX = temp
+												.getString("locationX");
+										String locationY = temp
+												.getString("locationY");
+										
+										
+										
+										String tips = temp.getString("tips");
+										String environmentGrade = temp.getString("environmentGrade");
+										String tastGrade = temp.getString("tastGrade");
+										String serviceGrade = temp.getString("serviceGrade");
+										//String pricePerPerson = temp.getString("pricePerPerson");
+									
+									
+									shop.setphoneNumber(phoneNumber);
+									shop.setAddress(address);
+									shop.setBusinessTime(businessTime);
+									shop.setLocationX(locationX);
+									shop.setLocationY(locationY);
+								
+									shop.setShopId(shopId);
+									shop.setShopName(shopName);
+									shop.setState(state);
+									shop.setTips(tips);
+									shop.setUserId(userId);
+									shop.setEnvironmentGrade(environmentGrade);
+									shop.setServiceGrade(serviceGrade);
+									shop.setTastGrade(tastGrade);
+									shops.add(shop);
+									
+									
+								}
+							
+									
+									
+									
+									((SearchActivity) object).setShop(shops);
+								}
+							}
+
+							
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 
 					}
 				}.setObject(object));
 	}
-
+	
 	/**
 	 * id搜索商户
 	 * 
@@ -1134,130 +1171,6 @@ public class JsonAnalysis {
 		}.setObject(object));
 	}
 
-	public void searchShopEvaluationById(Object object, String shopId) {
-		params = new RequestParams();
-		params.put("shopId", shopId);
-
-		Api.getInstance().searchShopEvaluationById(params,
-				new JsonHttpResponseHandler() {
-					Object object = null;
-
-					JsonHttpResponseHandler setObject(Object object) {
-						this.object = object;
-						return this;
-					}
-
-					@Override
-					public void onFailure(Throwable arg0, JSONObject arg1) {
-						// TODO Auto-generated method stub
-						// super.onFailure(arg0, arg1);
-						ErrorMessage errorMess = new ErrorMessage();
-						errorMess.setError("1");
-						errorMess.setResult("服务器繁忙");
-						//((MainActivity) object).setMessage(errorMess);
-
-					}
-
-					@Override
-					public void onSuccess(JSONObject arg1) {
-						// TODO Auto-generated method stub
-						// super.onSuccess(arg1);
-
-						Log.i("JsonAnalysis login", arg1.toString());
-						// try {
-						//
-						// if (object instanceof MainActivity) {
-						// // ErrorMessage errorMess = new ErrorMessage();
-						// // String error = arg1.getString("error");//
-						// 获取pet对象的参数
-						// // if(Integer.valueOf(error) == 1){
-						// // String result = arg1.getString("result");
-						// // errorMess.setError(error);
-						// // errorMess.setResult(result);
-						// // //((MainActivity) object).setMessage(errorMess);
-						// // }else{
-						//
-						// List<Dish> dishes = new ArrayList<Dish>();
-						// JSONArray jsonArr = arg1.getJSONArray("dish");
-						// for (int i = 0; i < jsonArr.length(); i++) {
-						// JSONObject temp = jsonArr.getJSONObject(i);
-						// String dishPrice = temp.getString("dishPrice");
-						// String userName = temp.getString("userName");
-						// String dishName = temp.getString("dishName");
-						// String dishImage = temp.getString("dishImage");
-						//
-						// Dish dish = new Dish();
-						// dish.setDishImage(dishImage);
-						// dish.setDishName(dishName);
-						// dish.setDishPrice(dishPrice);
-						// dishes.add(dish);
-						// }
-						// String state = arg1.getString("state");
-						// String businessTime = arg1.getString("businessTime");
-						// String locationX = arg1.getString("locationX");
-						// String locationY = arg1.getString("locationY");
-						// String phoneNumber = arg1.getString("phoneNumber");
-						// String address = arg1.getString("address");
-						// String shopName = arg1.getString("shopName");
-						// String shopId = arg1.getString("shopId");
-						// String userId = arg1.getString("userId");
-						// String userName = arg1.getString("userName");
-						// String tips = arg1.getString("tips");
-						// String isCollected = arg1.getString("isCollected");
-						// Shop shop = new Shop();
-						// shop.setAddress(address);
-						// shop.setBusinessTime(businessTime);
-						// shop.setLocationX(locationX);
-						// shop.setLocationY(locationY);
-						// shop.setphoneNumber(phoneNumber);
-						// shop.setShopId(shopId);
-						// shop.setShopName(shopName);
-						// shop.setState(state);
-						// shop.setTips(tips);
-						// shop.setUserId(userId);
-						// UserComment comment = new UserComment();
-						// JSONObject temp = arg1.getJSONObject("comment");
-						// String tastGrade = temp.getString("tastGrade");
-						// String time = temp.getString("time");
-						// String shopId1 = temp.getString("shopId");
-						// String shopEvaluationId =
-						// temp.getString("shopEvaluationId");
-						// String userId1 = temp.getString("userId");
-						// String environmentGrade =
-						// temp.getString("environmentGrade");
-						// String userName1 = temp.getString("userName");
-						// String serviceGrade = temp.getString("serviceGrade");
-						// String pricePerPerson =
-						// temp.getString("pricePerPerson");
-						// String comment1 = temp.getString("comment");
-						// String userAvatar = temp.getString("userAvatar");
-						// comment.setComment(comment1);
-						// comment.setEnvironmentGrade(environmentGrade);
-						// comment.setPricePerPerson(pricePerPerson);
-						// comment.setServiceGrade(serviceGrade);
-						// comment.setShopEvaluationId(shopEvaluationId);
-						// comment.setShopId(shopId1);
-						// comment.setTastGrade(tastGrade);
-						// comment.setTime(time);
-						// comment.setUserAvatar(userAvatar);
-						// comment.setUserName(userName1);
-						// comment.setuUserId(userId1);
-						// ////((MainActivity) object).setDish(dishes);
-						// //((MainActivity) object).setComment(comment);
-						// ////((MainActivity) object).setShop(shop);
-						// //}
-						//
-						//
-						// }
-						// } catch (JSONException e) {
-						// // TODO Auto-generated catch block
-						// e.printStackTrace();
-						// }
-
-					}
-				}.setObject(object));
-	}
-	
 	 /**
 		 * 添加商铺评价
 		 * 
@@ -1270,136 +1183,7 @@ public class JsonAnalysis {
 		 * @param comment
 		 
 		 */
-		 public void addShopEvaluation(Object object,String shopId, String tasteGrade, String
-		 environmentGrade, String serviceGrade, String pricePerPerson,
-		 String comment){
-			 params = new RequestParams();
-			 params.put("shopId", shopId);
-			 params.put("tasteGrade", tasteGrade);
-			 params.put("environmentGrade", environmentGrade);
-			 params.put("serviceGrade", serviceGrade);
-			 params.put("pricePerPerson", pricePerPerson);
-			 params.put("comment", comment);
 
-				Api.getInstance().addShopEvaluation(params,
-						new JsonHttpResponseHandler() {
-							Object object = null;
-
-							JsonHttpResponseHandler setObject(Object object) {
-								this.object = object;
-								return this;
-							}
-
-							@Override
-							public void onFailure(Throwable arg0, JSONObject arg1) {
-								// TODO Auto-generated method stub
-								// super.onFailure(arg0, arg1);
-								ErrorMessage errorMess = new ErrorMessage();
-								errorMess.setError("1");
-								errorMess.setResult("服务器繁忙");
-								//((MainActivity) object).setMessage(errorMess);
-
-							}
-
-							@Override
-							public void onSuccess(JSONObject arg1) {
-								// TODO Auto-generated method stub
-								// super.onSuccess(arg1);
-
-								Log.i("JsonAnalysis login", arg1.toString());
-								// try {
-								//
-								// if (object instanceof MainActivity) {
-								// // ErrorMessage errorMess = new ErrorMessage();
-								// // String error = arg1.getString("error");//
-								// 获取pet对象的参数
-								// // if(Integer.valueOf(error) == 1){
-								// // String result = arg1.getString("result");
-								// // errorMess.setError(error);
-								// // errorMess.setResult(result);
-								// // //((MainActivity) object).setMessage(errorMess);
-								// // }else{
-								//
-								// List<Dish> dishes = new ArrayList<Dish>();
-								// JSONArray jsonArr = arg1.getJSONArray("dish");
-								// for (int i = 0; i < jsonArr.length(); i++) {
-								// JSONObject temp = jsonArr.getJSONObject(i);
-								// String dishPrice = temp.getString("dishPrice");
-								// String userName = temp.getString("userName");
-								// String dishName = temp.getString("dishName");
-								// String dishImage = temp.getString("dishImage");
-								//
-								// Dish dish = new Dish();
-								// dish.setDishImage(dishImage);
-								// dish.setDishName(dishName);
-								// dish.setDishPrice(dishPrice);
-								// dishes.add(dish);
-								// }
-								// String state = arg1.getString("state");
-								// String businessTime = arg1.getString("businessTime");
-								// String locationX = arg1.getString("locationX");
-								// String locationY = arg1.getString("locationY");
-								// String phoneNumber = arg1.getString("phoneNumber");
-								// String address = arg1.getString("address");
-								// String shopName = arg1.getString("shopName");
-								// String shopId = arg1.getString("shopId");
-								// String userId = arg1.getString("userId");
-								// String userName = arg1.getString("userName");
-								// String tips = arg1.getString("tips");
-								// String isCollected = arg1.getString("isCollected");
-								// Shop shop = new Shop();
-								// shop.setAddress(address);
-								// shop.setBusinessTime(businessTime);
-								// shop.setLocationX(locationX);
-								// shop.setLocationY(locationY);
-								// shop.setphoneNumber(phoneNumber);
-								// shop.setShopId(shopId);
-								// shop.setShopName(shopName);
-								// shop.setState(state);
-								// shop.setTips(tips);
-								// shop.setUserId(userId);
-								// UserComment comment = new UserComment();
-								// JSONObject temp = arg1.getJSONObject("comment");
-								// String tastGrade = temp.getString("tastGrade");
-								// String time = temp.getString("time");
-								// String shopId1 = temp.getString("shopId");
-								// String shopEvaluationId =
-								// temp.getString("shopEvaluationId");
-								// String userId1 = temp.getString("userId");
-								// String environmentGrade =
-								// temp.getString("environmentGrade");
-								// String userName1 = temp.getString("userName");
-								// String serviceGrade = temp.getString("serviceGrade");
-								// String pricePerPerson =
-								// temp.getString("pricePerPerson");
-								// String comment1 = temp.getString("comment");
-								// String userAvatar = temp.getString("userAvatar");
-								// comment.setComment(comment1);
-								// comment.setEnvironmentGrade(environmentGrade);
-								// comment.setPricePerPerson(pricePerPerson);
-								// comment.setServiceGrade(serviceGrade);
-								// comment.setShopEvaluationId(shopEvaluationId);
-								// comment.setShopId(shopId1);
-								// comment.setTastGrade(tastGrade);
-								// comment.setTime(time);
-								// comment.setUserAvatar(userAvatar);
-								// comment.setUserName(userName1);
-								// comment.setuUserId(userId1);
-								// ////((MainActivity) object).setDish(dishes);
-								// //((MainActivity) object).setComment(comment);
-								// ////((MainActivity) object).setShop(shop);
-								// //}
-								//
-								//
-								// }
-								// } catch (JSONException e) {
-								// // TODO Auto-generated catch block
-								// e.printStackTrace();
-								// }
-
-							}
-						}.setObject(object));
-		 }
 		 public void getAllPoint(Object object){
 			 Api.getInstance().getAllPoint(new JsonHttpResponseHandler() {
 					Object object = null;
@@ -1662,7 +1446,7 @@ public class JsonAnalysis {
 									// super.onSuccess(arg1);
 									Log.i("JsonAnalysis login", arg1.toString());
 									try {
-										if (object instanceof MainActivity) {
+										if (object instanceof CollectionActivity) {
 											List<Shop> shops = new ArrayList<Shop>();
 											for(int i = 0; i < arg1.length();i++){
 												JSONObject temp = arg1.getJSONObject(i);
@@ -1683,7 +1467,7 @@ public class JsonAnalysis {
 												shop.setShopId(shopId);
 												shops.add(shop);
 											}
-											//((MainActivity) object).setShop(shops);
+											((CollectionActivity) object).setShop(shops);
 											
 										}
 
@@ -1784,86 +1568,84 @@ public class JsonAnalysis {
 							 
 						 }
 						 /**
-							 * 查询我的评价
+	* 查询我的评价
 							 * @param reponseHandler
 							 */
-							 public void getPersonComment(Object object){
-								 Api.getInstance().getPersonComment(new JsonHttpResponseHandler() {
-										Object object = null;
+	public void getPersonComment(Object object)
+	{
+		Api.getInstance().getPersonComment(new JsonHttpResponseHandler()
+		{
+			Object object = null;
+			JsonHttpResponseHandler setObject(Object object) {
+				this.object = object;
+				return this;
+				}
+			
+			@Override
+			public void onFailure(Throwable arg0, JSONObject arg1) {
+				// TODO Auto-generated method stub
+				// super.onFailure(arg0, arg1);
+				ErrorMessage errorMess = new ErrorMessage();
+				errorMess.setError("1");
+				errorMess.setResult("服务器繁忙");
+				//((MainActivity) object).setMessage(errorMess);
+				
+			}
+			
+			@Override
+			public void onSuccess(JSONObject arg1) {
+				// TODO Auto-generated method stub
+				// super.onSuccess(arg1);
+				Log.i("JsonAnalysis login", arg1.toString());
+				try {
+					if (object instanceof MainActivity) {
+						JSONArray comments = arg1.getJSONArray("comment");
+						//JSONArray dishes = arg1.getJSONArray("dish");
+						List<UserComment> userComments = new ArrayList<UserComment>();
+						for(int i = 0 ; i < comments.length(); i++){
+							
+							JSONObject temp = comments.getJSONObject(i);
+							String shopName = temp.getString("shopName");
+							String tastGrade = temp.getString("tastGrade");
+							String environmentGrade = temp.getString("environmentGrade");
+							String serviceGrade = temp.getString("serviceGrade");
+							String pricePerPerson = temp.getString("pricePerPerson");
+							String time = temp.getString("time");
+							String comment = temp.getString("comment");
+							UserComment tempComment = new UserComment();
+							tempComment.setShopName(shopName);
+							tempComment.setTastGrade(tastGrade);
+							tempComment.setEnvironmentGrade(environmentGrade);
+							tempComment.setServiceGrade(serviceGrade);
+							tempComment.setPricePerPerson(pricePerPerson);
+							tempComment.setTime(time);
+							tempComment.setComment(comment);
+							userComments.add(tempComment);
+							}
+						
+//							List<Dish> myDishes = new ArrayList<Dish>();
+//							for(int i = 0; i < dishes.length(); i++){
+//								JSONObject temp = dishes.getJSONObject(i);
+//								String dishImage = temp.getString("dishImage");//														String dishName = temp.getString("dishName");
+//								String dishPrice = temp.getString("dishPrice");
+//								Dish dish = new Dish();
+//								dish.setDishImage(dishImage);
+//								dish.setDishName(dishName);
+//								dish.setDishPrice(dishPrice);
+//							}
 
-										JsonHttpResponseHandler setObject(Object object) {
-											this.object = object;
-											return this;
-										}
-
-										@Override
-										public void onFailure(Throwable arg0, JSONObject arg1) {
-											// TODO Auto-generated method stub
-											// super.onFailure(arg0, arg1);
-											ErrorMessage errorMess = new ErrorMessage();
-											errorMess.setError("1");
-											errorMess.setResult("服务器繁忙");
-											//((MainActivity) object).setMessage(errorMess);
-
-										}
-
-										@Override
-										public void onSuccess(JSONObject arg1) {
-											// TODO Auto-generated method stub
-											// super.onSuccess(arg1);
-											Log.i("JsonAnalysis login", arg1.toString());
-											try {
-												if (object instanceof MainActivity) {
-													JSONArray comments = arg1.getJSONArray("comment");
-													//JSONArray dishes = arg1.getJSONArray("dish");
-													List<UserComment> userComments = new ArrayList<UserComment>();
-													for(int i = 0 ; i < comments.length(); i++){
-														
-														JSONObject temp = comments.getJSONObject(i);
-													String shopName = temp.getString("shopName");
-													String tastGrade = temp.getString("tastGrade");
-													String environmentGrade = temp.getString("environmentGrade");
-													String serviceGrade = temp.getString("serviceGrade");
-													String pricePerPerson = temp.getString("pricePerPerson");
-													String time = temp.getString("time");
-													String comment = temp.getString("comment");
-													UserComment tempComment = new UserComment();
-													tempComment.setShopName(shopName);
-													tempComment.setTastGrade(tastGrade);
-													tempComment.setEnvironmentGrade(environmentGrade);
-													tempComment.setServiceGrade(serviceGrade);
-													tempComment.setPricePerPerson(pricePerPerson);
-													tempComment.setTime(time);
-													tempComment.setComment(comment);
-													userComments.add(tempComment);
-													}
-//													List<Dish> myDishes = new ArrayList<Dish>();
-//													for(int i = 0; i < dishes.length(); i++){
-//														JSONObject temp = dishes.getJSONObject(i);
-//														String dishImage = temp.getString("dishImage");
-//														String dishName = temp.getString("dishName");
-//														String dishPrice = temp.getString("dishPrice");
-//														Dish dish = new Dish();
-//														dish.setDishImage(dishImage);
-//														dish.setDishName(dishName);
-//														dish.setDishPrice(dishPrice);
-//													}
-														
-														
-														
-													//((MainActivity) object).setComment(userComments);
+//							((MainActivity) object).setComment(userComments);
 													
-												}
-
-											} catch (JSONException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
-											}
-
-										}
-									}.setObject(object));		
-
-							 }
+					}
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						}
+				
+			}
+			}.setObject(object));
+		
+	}
 																			 
 		 // /**
 	// * 通过中心位置获得radius半径内所有商店信息
@@ -1916,4 +1698,181 @@ public class JsonAnalysis {
 	// public void getLevelList(JsonHttpResponseHandler reponseHandler){
 	//
 	// }
+							 
+	public void searchShopEvaluationById(Object object, String shopId) {
+		params = new RequestParams();
+		params.put("shopId", shopId);
+	
+		Api.getInstance().searchShopEvaluationById(params,
+				new JsonHttpResponseHandler() {
+			Object object = null;
+			
+			JsonHttpResponseHandler setObject(Object object) {
+				this.object = object;
+				return this;
+				}
+				
+			@Override
+			public void onFailure(Throwable arg0, JSONArray arg1) {
+				// TODO Auto-generated method stub
+				// super.onFailure(arg0, arg1);
+				ErrorMessage errorMess = new ErrorMessage();
+				errorMess.setError("1");
+				errorMess.setResult("服务器繁忙");
+				((ShowReviewActivity) object).setMessage(errorMess);
+
+
+				
+			}
+			
+			@Override
+			public void onSuccess(JSONArray arg1) {
+				// TODO Auto-generated method stub
+				// super.onSuccess(arg1);
+				Log.i("JsonAnalysis login", arg1.toString());
+				try {
+					
+					if (object instanceof ShowReviewActivity) {
+						
+						List<UserComment> comments = new ArrayList<UserComment>();
+						for(int i = 0; i < arg1.length();i++){
+							JSONObject temp = arg1.getJSONObject(i);
+							String tastGrade = temp.getString("tastGrade");
+							String time = temp.getString("time");
+							String count = temp.getString("count");
+							String shopId = temp.getString("shopId");
+							String shopEvaluationId =
+									temp.getString("shopEvaluationId");
+							String userName = temp.getString("userName");
+							String environmentGrade = temp.getString("environmentGrade");
+							String serviceGrade = temp.getString("serviceGrade");
+							String isEvaluate = temp.getString("isEvaluate");
+							String comment1 = temp.getString("comment");
+							String userAvatar = temp.getString("userAvatar");
+							String pricePerPerson =temp.getString("pricePerPerson");
+							
+							UserComment comment = new UserComment();
+							comment.setTastGrade(tastGrade);
+							comment.setTime(time);
+							comment.setCount(count);
+							comment.setShopEvaluationId(shopEvaluationId);
+							comment.setShopId(shopId);
+							comment.setUserName(userName);
+							comment.setIsEvaluate(isEvaluate);
+							comment.setComment(comment1);
+							comment.setServiceGrade(serviceGrade);
+							comment.setUserAvatar(userAvatar);
+							comment.setEnvironmentGrade(environmentGrade);
+							comment.setPricePerPerson(pricePerPerson);
+							comments.add(comment);
+							}
+													
+						((ShowReviewActivity) object).setComment(comments);	
+						
+					}
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						}
+				
+			}
+			}.setObject(object));
+		}
+	
+	public void addShopEvaluation(Object object,String shopId, String tasteGrade, String
+			environmentGrade, String serviceGrade, String pricePerPerson,
+			String comment){
+		params = new RequestParams();
+		params.put("shopId", shopId);
+		params.put("tasteGrade", tasteGrade);
+		params.put("environmentGrade", environmentGrade);
+		params.put("serviceGrade", serviceGrade);
+		params.put("pricePerPerson", pricePerPerson);
+		params.put("comment", comment);
+		
+		Api.getInstance().addShopEvaluation(params,new JsonHttpResponseHandler() {
+			Object object = null;
+			
+			JsonHttpResponseHandler setObject(Object object) {
+				this.object = object;
+				return this;
+				}
+			
+			@Override
+			public void onFailure(Throwable arg0, JSONArray arg1) {
+				// TODO Auto-generated method stub
+				// super.onFailure(arg0, arg1);
+				ErrorMessage errorMess = new ErrorMessage();
+				errorMess.setError("1");
+				errorMess.setResult("服务器繁忙");
+				//((MainActivity) object).setMessage(errorMess);
+
+			}
+
+			@Override
+			public void onSuccess(JSONArray arg1) {
+				// TODO Auto-generated method stub
+				// super.onSuccess(arg1);
+
+				Log.i("JsonAnalysis login", arg1.toString());
+				 try {
+						
+					 if (object instanceof MainActivity) {
+					 
+					
+					 List<UserComment> comments = new ArrayList<UserComment>();
+					 for(int i = 0; i < arg1.length();i++){
+						 JSONObject temp = arg1.getJSONObject(i);
+						 String tastGrade = temp.getString("tastGrade");
+						 String time = temp.getString("time");
+						 String count = temp.getString("count");
+						 String shopId = temp.getString("shopId");
+						 String shopEvaluationId =
+						 temp.getString("shopEvaluationId");
+						 String userName = temp.getString("userName");
+						 String environmentGrade = temp.getString("environmentGrade");
+						 String serviceGrade = temp.getString("serviceGrade");
+						 String isEvaluate = temp.getString("isEvaluate");
+						 String comment1 = temp.getString("comment");
+						 String userAvatar = temp.getString("userAvatar");
+						 String pricePerPerson =temp.getString("pricePerPerson");
+						 
+						 
+						 UserComment comment = new UserComment();
+						 comment.setTastGrade(tastGrade);
+						 comment.setTime(time);
+						 comment.setCount(count);
+						 comment.setShopEvaluationId(shopEvaluationId);
+						 comment.setShopId(shopId);
+						 comment.setUserName(userName);
+						 comment.setIsEvaluate(isEvaluate);
+						 comment.setComment(comment1);
+						 comment.setServiceGrade(serviceGrade);
+						 comment.setUserAvatar(userAvatar);
+						 comment.setEnvironmentGrade(environmentGrade);
+						 comment.setPricePerPerson(pricePerPerson);
+						 comments.add(comment);
+						 
+						 
+					 }
+					
+					
+					
+					 
+					
+				
+					 //((MainActivity) object).setComment(comments);
+					
+					
+					
+					 }
+					 } catch (JSONException e) {
+					 // TODO Auto-generated catch block
+					 e.printStackTrace();
+					 }
+
+				}
+			}.setObject(object));
+}
+							 
 }

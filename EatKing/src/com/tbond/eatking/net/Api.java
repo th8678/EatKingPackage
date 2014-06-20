@@ -43,48 +43,7 @@ public class Api {
 	public static Api getInstance(){
 		return instance;
 	}
-	
-<<<<<<< HEAD
-	public void login(String userName, String userPwd, JsonHttpResponseHandler reponseHandler){
-		RequestParams params = new RequestParams();
-		params.put("userName", userName);
-		params.put("userPwd", userPwd);
-		String pathString = Environment.getExternalStorageDirectory().getAbsolutePath() + "/infosearch_share.jpg";
-		File im = new File(pathString);
-		Log.i("image",String.valueOf(im.length()));
-		try {
-			params.put("image", im);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		WebRestClient.post(API_LOGIN, params, reponseHandler);
-	}
-	
-	public void regis(String userName, String userPwd, JsonHttpResponseHandler reponseHandler){
-		RequestParams params = new RequestParams();
-		params.put("userName", userName);
-		params.put("userPwd", userPwd);
-		String pathString = Environment.getExternalStorageDirectory().getAbsolutePath() + "/infosearch_share.jpg";
-		File im = new File(pathString);
-		Log.i("image",String.valueOf(im.length()));
-		try {
-			params.put("image", im);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		WebRestClient.post(API_REGIS, params, reponseHandler);
-	}
-	
-	public void logout(JsonHttpResponseHandler reponseHandler){
-		WebRestClient.post(API_LOGOUT, null, reponseHandler);
-		WebRestClient.getCookieStore().clear();
-	}
-	
-=======
->>>>>>> be49ce460bd2b501dcf8b253768839c7fb216757
+
 	/**
 	 * µÇÂ½²Ù×÷
 	 * @param params

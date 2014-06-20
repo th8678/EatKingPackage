@@ -10,12 +10,12 @@ import greendroid.widget.QuickAction;
 import greendroid.widget.QuickActionBar;
 import greendroid.widget.QuickActionWidget;
 import greendroid.widget.SegmentedAdapter;
+import greendroid.widget.SegmentedBar.OnSegmentChangeListener;
 import greendroid.widget.SegmentedHost;
 import greendroid.widget.ActionBarItem.Type;
 import greendroid.widget.QuickActionWidget.OnQuickActionClickListener;
 
 import com.tbond.eatking.R;
-import com.tbond.eatking.view.MapOverlay.OnTapListener;
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApi;
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApiListener;
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApiResult;
@@ -29,6 +29,7 @@ import com.tencent.tencentmap.mapsdk.map.OverlayItem;
 import com.tencent.tencentmap.mapsdk.map.PoiOverlay;
 import com.tencent.tencentmap.mapsdk.map.PoiOverlay.CustomInfoWindowAdapter;
 import com.tbond.eatking.net.JsonAnalysis;
+import com.tbond.eatking.view.NewShopEnsureLocationActivity.OnTapListener;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -50,6 +51,7 @@ import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -68,6 +70,7 @@ public class MainActivity extends GDActivity {
 
 	private final Handler mHandler = new Handler();
     private PeopleSegmentedAdapter mAdapter;
+    Intent intent;
     SegmentedHost segmentedHost;
     private QuickActionBar mBar;
     MapView mapView;
@@ -76,6 +79,7 @@ public class MainActivity extends GDActivity {
     PoiOverlay myPoiOverlay;
     LocListener mListener;
     UserOverlay userOverlay;
+    PoiOverlay poToRemove;
     
     public MainActivity(){
     	super(ActionBar.Type.Normal);
@@ -164,6 +168,7 @@ public class MainActivity extends GDActivity {
 			myPoiOverlay = new PoiOverlay(null);
 			myPoiOverlay.setCustomInfoWindowAdapter(new PoiInfoWindow(userLocation,myPoiOverlay));
 			mapView.addOverlay(myPoiOverlay);
+			poToRemove = myPoiOverlay;
 		}
 		myPoiOverlay.setPoiItems(listPois);
 		mapView.invalidate();  //刷新地图     
@@ -351,6 +356,10 @@ public class MainActivity extends GDActivity {
     			
     			break;
     		case 1://处理主界面，定位后更新附近poi
+    			if(poToRemove != null){
+    				mapView.removeOverlay(poToRemove);
+    				poToRemove = null;
+    			}
     			if(poiSearch==null)
 				{
 					poiSearch=new PoiSearch(MainActivity.this);
@@ -463,9 +472,6 @@ public class MainActivity extends GDActivity {
 		}
 	}
     
-	public void setOnTapListener(OnTapListener listnerTap)
-	{
-		tapListener=listnerTap;
-	}
+	
     
 }

@@ -31,11 +31,6 @@ import android.widget.TextView;
 
 import com.tbond.eatking.*;
 
-<<<<<<< HEAD
-import com.tbond.eatking.model.TencentLBS;
-=======
-//import com.tbond.eatking.model.TencentLBS;
->>>>>>> be49ce460bd2b501dcf8b253768839c7fb216757
 //import com.tbond.eatking.model.TencentLBS.LocListener;
 //import com.tbond.eatking.view.MapOverlay.OnTapListener;
 //import com.tbond.eatking.view.GraphicOverlay;

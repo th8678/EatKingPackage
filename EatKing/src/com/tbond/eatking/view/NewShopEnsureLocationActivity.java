@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tbond.eatking.R;
+import com.tbond.eatking.model.ErrorMessage;
+import com.tbond.eatking.model.Shop;
+import com.tbond.eatking.net.JsonAnalysis;
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApi;
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApiListener;
 import com.tencent.tencentmap.lbssdk.TencentMapLBSApiResult;
@@ -41,13 +44,16 @@ import android.view.View.OnTouchListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class NewShopEnsureLocationActivity extends Activity {
 
-	EditText shopName,shopAddress;
+	TextView shopName,shopAddress;
 	MapView mapView;
 	ImageButton ensureBtn,backBtn;
-	String location;
+	double locationX,locationY;
+	Boolean located = false;
     ImageView btnLocate;
     PoiSearch poiSearch;
     PoiOverlay myPoiOverlay;
@@ -97,13 +103,15 @@ public class NewShopEnsureLocationActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_shop_ensure_location);
         
-        shopName = (EditText)findViewById(R.id.newShopName);
-        shopAddress = (EditText)findViewById(R.id.newShopAddress);
+        shopName = (TextView)findViewById(R.id.ensureLocationNewShopName);
+        shopAddress = (TextView)findViewById(R.id.ensureLocationNewShopAddress);
         mapView = (MapView)findViewById(R.id.mapview);
         ensureBtn = (ImageButton)findViewById(R.id.ensureBtn);
         backBtn = (ImageButton)findViewById(R.id.backBtn);
         
-        shopName.setText(savedInstanceState.getString("shop_name"));
+        Bundle bundle = new Bundle();
+        bundle = this.getIntent().getExtras();
+        shopName.setText(bundle.getString("shop_name"));
         shopAddress.setText("正在获取地址");
         
         
@@ -121,12 +129,11 @@ public class NewShopEnsureLocationActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(location == null || location == ""){
-					//弹出通知，请确认位置\请检查网络
+				if(!located){
+					Toast.makeText(NewShopEnsureLocationActivity.this, "请确认网络状况", Toast.LENGTH_SHORT);
 				}
 				else{
-					Api api = new Api();
-					Api.addNewShop(shopName.getText().toString(),location);
+					JsonAnalysis.getInstance().addShop(this, shopName.getText().toString(), locationX, locationY, null, null, null, null, null);
 				}
 			}});
         
@@ -174,9 +181,22 @@ public class NewShopEnsureLocationActivity extends Activity {
 	            geoLevel,  
 	            TencentMapLBSApi.DELAY_NORMAL,mode); 
 		TencentMapLBSApi.getInstance().setGPSUpdateInterval(1000);
-		mListener.setArea(20000);
+		mListener.setArea(10300);
 		TencentMapLBSApi.getInstance().requestLocationUpdate(getApplicationContext(), mListener);
     }
+	
+	public void setMessage(ErrorMessage errMsg){
+		Toast.makeText(this, errMsg.getResult(), Toast.LENGTH_SHORT).show();
+	}
+	
+	public void setShop(Shop shop){
+		Intent intent = new Intent();
+		Bundle bundle = new Bundle();
+		bundle.putString("shop_id", shop.getShopId());
+		intent.putExtras(bundle);
+		intent.setClass(this, MainActivity.class);
+		startActivity(intent);
+	}
     
     private class LocListener extends TencentMapLBSApiListener{
 
@@ -196,17 +216,23 @@ public class NewShopEnsureLocationActivity extends Activity {
     		mapController.setCenter(new GeoPoint((int)(locRes.Latitude * 1E6),(int)(locRes.Longitude * 1E6)));
     		mapController.setZoom(15);
     		
+    		locationX = locRes.Latitude;
+    		locationY = locRes.Longitude;
+    		located = true;
     		Drawable marker = getResources().getDrawable(R.drawable.markpoint);  //得到需要标在地图上的资源
     		
     		iTipTranslateY=marker.getIntrinsicHeight();
     		
     		marker.setBounds(0, 0, marker.getIntrinsicWidth(), marker
     				.getIntrinsicHeight());   //为maker定义位置和边界
-    		
+    		if(mapOverlay != null)
+    			mapView.removeOverlay(mapOverlay);
     		mapOverlay=new MapOverlay(marker, NewShopEnsureLocationActivity.this,locRes.Latitude,locRes.Longitude,2000);
     		
+    		if(graphicOverlay != null)
+    			mapView.removeOverlay(graphicOverlay);
     		graphicOverlay=new GraphicOverlay();
-    		graphicOverlay.setParams(new GeoPoint((int)(39.911766*1e6),(int)(116.305456*1e6)), area);
+    		graphicOverlay.setParams(new GeoPoint((int)(locRes.Latitude * 1E6),(int)(locRes.Longitude * 1E6)), area);
     		mapView.addOverlay(graphicOverlay);	
     		mapOverlay.setOnTapListener(onTapListener);
     		mapView.addOverlay(mapOverlay);

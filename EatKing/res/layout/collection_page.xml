@@ -2,7 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical" >
     
+        <FrameLayout
+            android:id="@+id/collectionHeaderLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/collectionheaderBackground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/header_brown" />
+
+        <ImageButton
+            android:id="@+id/collectionBackBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff" 
+            android:src="@drawable/back_button_white" />
+
+        <TextView
+            android:id="@+id/collectionHeaderTitle"
+            android:layout_width="match_parent"
+            android:layout_height="96px"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="收藏"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </FrameLayout>
+    
+            <ListView
+        android:id="@+id/collectionListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
 
 </LinearLayout>

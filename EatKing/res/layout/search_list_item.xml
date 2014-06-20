@@ -21,8 +21,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	style="?attr/gdThumbnailItemViewStyle"
 	android:layout_height="wrap_content"
-	android:minHeight="@dimen/thumbnail_size"
-	android:paddingLeft="@dimen/thumbnail_padding">
+	android:minHeight="@dimen/thumbnail_size">
 	
 	<greendroid.widget.AsyncImageView
 		style="?attr/gdThumbnailItemViewStyleThumbnail"

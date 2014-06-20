@@ -33,6 +33,11 @@
             android:gravity="right" >
 
             <TextView
+                android:id="@+id/perPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="人均 "/>
+            <TextView
                 android:id="@+id/markTaste"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,7 +95,7 @@
                 android:id="@+id/goodBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@style/AppTheme"
+                android:background="#00ffffff"
                 android:src="@drawable/review_good" />
 
             <TextView
@@ -104,7 +109,8 @@
                 android:id="@+id/badBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@style/AppTheme"
+                android:background="#00ffffff"
+                android:visibility="gone"
                 android:src="@drawable/review_bad" />
 
             <TextView
@@ -112,16 +118,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="123"
+                android:visibility="gone"
                 android:textColor="@color/black" />
 
         </LinearLayout>
 
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:src="@drawable/shop_line_green_light" />
 
 </LinearLayout>

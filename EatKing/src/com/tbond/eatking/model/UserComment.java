@@ -13,6 +13,8 @@ public class UserComment {
 	private String pricePerPerson = null;
 	private String comment = null;
 	private String userAvatar = null;
+	private String isEvaluate = null;
+	private String count = null;
 	public void setTastGrade(String tastGrade) {
 		this.tastGrade = tastGrade;
 
@@ -78,7 +80,7 @@ public class UserComment {
 		return this.shopEvaluationId;
 
 	}
-	public String GetuUserId() {
+	public String GetUserId() {
 		return this.userId = userId;
 
 	}
@@ -105,6 +107,21 @@ public class UserComment {
 	public String GetUserAvatar() {
 		return this.userAvatar;
 	}
-	
+	public void setIsEvaluate(String isEvaluate) {
+		this.isEvaluate = isEvaluate;
+
+	}
+	public void setCount(String count) {
+		this. count =  count;
+
+	}
+	public String getIsEvaluate() {
+		return this.isEvaluate;
+
+	}
+	public String getCount() {
+		return this. count;
+
+	}
 										
 }

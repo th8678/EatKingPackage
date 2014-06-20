@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.tbond.eatking.R;
+import com.tbond.eatking.model.Shop;
 import com.tbond.eatking.net.Api;
+import com.tbond.eatking.net.JsonAnalysis;
 import com.tbond.eatking.view.ShowReviewActivity.ShopReviewAdapter;
 import com.tbond.eatking.view.ShowReviewActivity.ViewHolder;
 
@@ -24,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NewShopStartActivity extends Activity {
 	
@@ -42,12 +45,26 @@ public class NewShopStartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_shop_start);
         
+        /*warning!!!!!!!!!!!!!!!!!!!!!!*/
+        //JsonAnalysis.getInstance().searchShopByPosition(this);
         
-        datas = getListData();
         backBtn = (ImageButton)findViewById(R.id.backBtn);
         ensureBtn = (ImageButton)findViewById(R.id.ensureBtn);
-        shopName = (EditText)findViewById(R.id.shopName);
+        shopName = (EditText)findViewById(R.id.newShopName);
         shopList = (ListView)findViewById(R.id.listShop);
+        
+        List<Shop> shops = new ArrayList<Shop>();
+        Shop tempShop = new Shop();
+        tempShop.setShopName("尚未开放，敬请期待");
+        tempShop.setShopId("1");
+        shops.add(tempShop);
+        setShop(shops);
+        
+        }
+	
+	public void setShop(List<Shop> shops){
+		datas = getListData(shops);
+        
         
         backBtn.setOnClickListener(new OnClickListener(){
 
@@ -65,38 +82,38 @@ public class NewShopStartActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(shopName.getText() == null || shopName.getText().toString() == ""){
-					//弹出通知，请输入名称
+				if(shopName.getText() == null || shopName.getText().length() == 0){
+					Toast.makeText(NewShopStartActivity.this, "请输入商店名称",
+						     Toast.LENGTH_SHORT).show();
 				}
 				else{
 					Intent intent=new Intent();   
 		            intent.setClass(NewShopStartActivity.this, NewShopEnsureLocationActivity.class);//remember to change the name
-		            intent.putExtra("shop_name", shopName.getText());
+		            Bundle bundle=new Bundle();
+		            bundle.putString("shop_name", shopName.getText().toString());
+		            intent.putExtras(bundle);
 		            startActivity(intent);   
-		            NewShopStartActivity.this.finish();  
+		            //NewShopStartActivity.this.finish();  
 				}
 			}});
         adapter = new ShopReviewAdapter(NewShopStartActivity.this);
         shopList.setAdapter(adapter);
-        
-        }
+	}
 	
-    private List<Map<String, Object>> getListData(){
+    private List<Map<String, Object>> getListData(List<Shop> shops){
     	List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-    	JsonAnalysis ja = new JsonAnalysis();
-    	Shop[] shops = ja.getSimilarShopList();
 
     	Map<String, Object> map;
-    	for(int i = 0;i < shops.length;++i){
+    	for(int i = 0;i < shops.size();++i){
     		//deal with data show
     		map = new HashMap<String,Object>();
-    		map.put("shop_name", shops[i].name);
-    		map.put("distance", shops[i].distance);
+    		map.put("shop_name", shops.get(i).getShopName());
+    		//map.put("distance", shops.get(i).getDistance());
     		list.add(map);
 
     	}
     	
-    	return null;
+    	return list;
     }
 	
     public final class ViewHolder{

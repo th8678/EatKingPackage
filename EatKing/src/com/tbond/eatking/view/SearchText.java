@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
 public class SearchText extends LinearLayout {
 	//Á½¸ö°´Å¥
 	private ImageView ib_searchtext_delete;
-	private EditText et_searchtext_search;
+	public EditText et_searchtext_search;
 	public SearchText(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub

@@ -1,53 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-/*
-** Copyright (C) 2010 Cyril Mottier (http://www.cyrilmottier.com)
-**
-** Licensed under the Apache License, Version 2.0 (the "License");
-** you may not use this file except in compliance with the License.
-** You may obtain a copy of the License at
-**
-**     http://www.apache.org/licenses/LICENSE-2.0
-**
-** Unless required by applicable law or agreed to in writing, software
-** distributed under the License is distributed on an "AS IS" BASIS,
-** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-** See the License for the specific language governing permissions and
-** limitations under the License.
-*/
--->
+<greendroid.widget.SegmentedHost xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:id="@+id/segmented_host"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
-<greendroid.widget.SegmentedHost
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/segmented_host"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-	
-<!-- 	<greendroid.widget.ActionBarItem -->
-<!-- 	    android:layout_width="fill_parent" -->
-<!-- 		android:layout_height="0dp" -->
-<!-- 		android:layout_weight="1.0" /> -->
-    
-    	    <com.tencent.tencentmap.mapsdk.map.MapView
-        android:id="@+id/mapview"
+    <!-- <greendroid.widget.ActionBarItem -->
+    <!-- android:layout_width="fill_parent" -->
+    <!-- android:layout_height="0dp" -->
+    <!-- android:layout_weight="1.0" /> -->
+
+    <TabHost
+        android1:id="@android:id/tabhost"
+        android1:layout_width="match_parent"
+        android1:layout_height="match_parent"
+        android1:layout_weight="1.0" >
+
+        <LinearLayout
+            android1:layout_width="match_parent"
+            android1:layout_height="match_parent"
+            android1:orientation="vertical" >
+
+            <TabWidget
+                android1:id="@android:id/tabs"
+                android1:layout_width="match_parent"
+                android1:layout_height="wrap_content" >
+            </TabWidget>
+
+            <FrameLayout
+                android1:id="@android:id/tabcontent"
+                android1:layout_width="match_parent"
+                android1:layout_height="match_parent" >
+
+                <LinearLayout
+                    android1:id="@+id/tabMapView"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="match_parent" >
+
+                    <com.tencent.tencentmap.mapsdk.map.MapView
+                        android1:id="@+id/mapview"
+                        android1:layout_width="fill_parent"
+                        android1:layout_height="fill_parent"
+                        android1:layout_weight="1.0" >
+                    </com.tencent.tencentmap.mapsdk.map.MapView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android1:id="@+id/tabListView"
+                    android1:background="@color/white"
+                    android1:layout_width="match_parent"
+                    android1:layout_height="match_parent" >
+
+                    <ListView
+                        android1:id="@+id/listview"
+        				android:divider="@color/other_yellow_dark"
+                        android1:layout_width="match_parent"
+                        android1:layout_height="wrap_content"
+                        android1:layout_weight="1" >
+                    </ListView>
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
+    <FrameLayout
+        android:id="@id/gd_segmented_content_view"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1.0" />
-    
-	<FrameLayout
-		android:id="@id/gd_segmented_content_view"
-		android:layout_width="fill_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1.0"
-		android:foreground="@drawable/gd_shadow_bottom">
-	    
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:foreground="@drawable/gd_shadow_bottom" >
+    </FrameLayout>
 
-	</FrameLayout>
-
-	<greendroid.widget.SegmentedBar
-		android:id="@id/gd_segmented_bar"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content" />
+    <greendroid.widget.SegmentedBar
+        android:id="@id/gd_segmented_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
 
 </greendroid.widget.SegmentedHost>
-

@@ -21,14 +21,15 @@
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@style/AppTheme"
+            android:background="#00ffffff"
             android:src="@drawable/back_button_white" />
 
         <TextView
             android:id="@+id/headerTitle"
             android:layout_width="match_parent"
-            android:layout_height="96px"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="15dp"
             android:text="评论"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -41,7 +42,7 @@
                 android:id="@+id/addReviewBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@style/AppTheme"
+                android:background="#00ffffff"
                 android:src="@drawable/add_button" />
 
         </LinearLayout>
@@ -51,7 +52,9 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:divider="@color/shop_green_light" >
+
     </ListView>
 
 </LinearLayout>
